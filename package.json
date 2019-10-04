@@ -4,8 +4,8 @@
     "description": "Basic Webserver made with Express",
     "main": "index.js",
     "scripts": {
-        "start": "node server.js",
-        "nodemon": "nodemon server.js",
+        "start": "node server/server.js",
+        "nodemon": "nodemon server/server.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "",
