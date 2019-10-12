@@ -17,7 +17,7 @@ app.get('/usuario', verificaToken, (req, res) => {
     User.find({ state: true }, 'nombre email role state google img')
         .skip(desde)
         .limit(limite)
-        .exec((err, usuario) => {
+        .exec((err, users) => {
 
             if (err) {
                 return res.status(400).json({
@@ -30,7 +30,7 @@ app.get('/usuario', verificaToken, (req, res) => {
 
                 res.json({
                     ok: true,
-                    usuario,
+                    users,
                     counter
                 });
 
@@ -70,7 +70,7 @@ app.put('/usuario/:id', [verificaToken, verificaAdmin_Role], (req, res) => {
     let id = req.params.id;
     let body = _.pick(req.body, ['nombre', 'email', 'img', 'role', 'state']);
 
-    User.findByIdAndUpdate(id, body, { new: true }, (err, userDB) => {
+    User.findByIdAndUpdate(id, body, { new: true, runValidators: true }, (err, userDB) => {
 
         if (err) {
             return res.status(400).json({

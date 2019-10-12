@@ -19,13 +19,10 @@ let verificaToken = (req, res, next) => {
             });
         }
 
-        req.usuario = decoded.usuario;
+        req.user = decoded.user;
         next();
 
     });
-
-
-
 };
 
 // =====================
@@ -33,9 +30,9 @@ let verificaToken = (req, res, next) => {
 // =====================
 let verificaAdmin_Role = (req, res, next) => {
 
-    let usuario = req.body;
+    let user = req.body;
 
-    if (usuario.role === 'ADMIN_ROLE') {
+    if (user.role === 'ADMIN_ROLE') {
         next();
     } else {
 
